@@ -126,6 +126,27 @@ void menuAdministrativo(int opcao_ADM){
 		}
 }
 
+void menuLoja(){
+    system("cls||clear");
+    int opcao_loja;
+    printf("+-----------------------+\n");
+    printf("|          YoPet        |\n");
+    printf("|-----------------------|\n");
+    printf("|  Menu Administrativo  |\n");
+    printf("|-----------------------|\n");
+    printf("|Digtie a opcao desejada|\n");
+    printf("|-----------------------|\n");
+    printf("|1 - Contratar Serviço  |\n");
+    printf("|2 - Comprar produto    |\n");
+    printf("|3 - Lista de Produto   |\n");
+    printf("|4 - Lista de Serviço   |\n");
+    printf("|5 - Buscar Produto     |\n");
+    printf("|6 - Buscar Serviço     |\n");
+    printf("|+---------------------+|\n");
+    scanf("%d",&opcao_ADM);
+
+}
+
 int main(int argc, char const *argv[]){
   int opcao;
 
