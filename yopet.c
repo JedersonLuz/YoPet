@@ -67,6 +67,61 @@ void cadastrarProduto () {
     }
   } while(opcao != '1');
 
+void menuAdministrativo(int opcao_ADM){
+		char buscarProduto[255], buscarServico[255];
+		printf("+-----------------------+\n");
+   		printf("|          YoPet        |\n");
+    	printf("|-----------------------|\n");
+    	printf("|  Menu Administrativo  |\n");
+    	printf("|-----------------------|\n");
+    	printf("|Digtie a opcao desejada|\n");
+    	printf("|-----------------------|\n");
+    	printf("|1 - Cadastrar Produto  |\n");
+    	printf("|2 - Cadastrar Servi�o  |\n");
+    	printf("|3 - Listar produtos    |\n");
+    	printf("|4 - Listar Servi�os    |\n");
+    	printf("|5 - Buscar Produtos    |\n");
+    	printf("|6 - Buscar Servi�os    |\n");
+    	printf("|7 - Deletar Produto    |\n");
+    	printf("|8 - Deletar Servi�os   |\n");
+    	printf("|9 - Atualizar Produtos |\n");
+    	printf("|10 - Atualizar Servi�os|\n");
+    	printf("|11 - Caixa             |\n");
+    	printf("|12 - Voltar            |\n");
+    	printf("+-----------------------+\n");
+    	scanf("%d",&opcao_ADM);
+
+    	switch(opcao_ADM){
+    		case 1:
+
+    			break;
+    		case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+    			break;
+    		case 8:
+				break;
+			case 9:
+				break;
+			case 10:
+				break;
+			case 11:
+				break;
+			case 12:
+				break;
+
+		}
 }
 
 int main(int argc, char const *argv[]) {
