@@ -52,3 +52,67 @@ int main(int argc, char const *argv[]) {
 
   return 0;
 }
+void menuAdministrativo(int opcao_ADM){
+		char buscarProduto[255], buscarServico[255];	
+		printf("+-----------------------+\n");
+   		printf("|          YoPet        |\n");
+    	printf("|-----------------------|\n");
+    	printf("|  Menu Administrativo  |\n");
+    	printf("|-----------------------|\n");
+    	printf("|Digtie a opcao desejada|\n");
+    	printf("|-----------------------|\n");
+    	printf("|1 - Cadastrar Produto  |\n");
+    	printf("|2 - Cadastrar Serviço  |\n");
+    	printf("|3 - Listar produtos    |\n");
+    	printf("|4 - Listar Serviços    |\n");
+    	printf("|5 - Buscar Produtos    |\n");
+    	printf("|6 - Buscar Serviços    |\n");
+    	printf("|7 - Deletar Produto    |\n");
+    	printf("|8 - Deletar Serviços   |\n");
+    	printf("|9 - Atualizar Produtos |\n");
+    	printf("|10 - Atualizar Serviços|\n");
+    	printf("|11 - Caixa             |\n");
+    	printf("|12 - Voltar            |\n");
+    	printf("+-----------------------+\n");
+    	scanf("%d",&opcao_ADM);
+    	
+    	switch(opcao_ADM){
+    		case 1:
+    			printf("Informe o nome do produto:\n ");
+    			scanf("%s",&produtos.nome);
+    			printf("Informe preco do produto:\n ");
+    			scanf("%f",&produtos.preco);
+    			break;
+    		case 2:
+    			printf("Informe o nome do serviço:\n ");
+    			scanf("%s",&servicos.nomeServico);
+    			printf("Informe o valor do servico:\n ");
+    			scanf("%f",&servicos.preco);
+				break;
+			case 3:
+				printf("%s : %.2f\n", produtos.nome, produtos.preco);
+				break;
+			case 4:
+				printf("%s : %.2f\n", servicos.nomeServico, servicos.preco);
+				break;
+			case 5:
+				printf("Nome do produto:\n ");
+				Scanf("%s",&buscarProduto);
+				break;
+			case 6:
+				break;
+			case 7:
+    			break;
+    		case 8:
+				break;
+			case 9:
+				break;
+			case 10:
+				break;
+			case 11:
+				break;
+			case 12:
+				break;
+						
+		} 
+}
