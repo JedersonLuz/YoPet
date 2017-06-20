@@ -15,15 +15,65 @@ struct sevicos {
   int id;
   char nomeServico[255], nomeAnimal[255], nomeDono[255];
   float preco;
+};
+
+struct produtos produto[255];
+struct sevicos servico[255];
+int contProd = 0;
+
+void cadastrarProduto () {
+  char mensagem[255];
+  int test;
+  char opcao;
+
+  do {
+    //idGenerator();
+    printf("Digite o nome do produto: \n");
+    setbuf(stdin, NULL);
+    scanf("%[^\n]s", produto[contProd].nome);
+    setbuf(stdin, NULL);
+    do {
+      printf("Digite o preco do produto: \n");
+      setbuf(stdin, NULL);
+      scanf("%s", mensagem);
+      test = atof(mensagem);
+      if (test == 0) {
+        printf("Entrada invalida.\n");
+      } else {
+        produto[contProd].preco = test;
+      }
+    } while(test == 0);
+    do {
+      printf("Digite a quantidade do produto: \n");
+      setbuf(stdin, NULL);
+      scanf("%s", mensagem);
+      test = atoi(mensagem);
+      if (test == 0) {
+        printf("Entrada invalida.\n");
+      } else {
+        produto[contProd].quantidade = test;
+      }
+    } while(test == 0);
+
+    printf("\nNome: %s\n", produto[contProd].nome);
+    printf("Preco: %f\n", produto[contProd].preco);
+    printf("Quantidade: %d\n", produto[contProd].quantidade);
+    printf("Deseja confirmar o cadastro? 1 - Sim/2 - Nao\n");
+    setbuf(stdin, NULL);
+    scanf("%c", &opcao);
+    if (opcao == '1') {
+      printf("Cadastro conclido.\n");
+      contProd++;
+    }
+  } while(opcao != '1');
+
 }
 
 int main(int argc, char const *argv[]) {
-
-  struct produtos produto[255];
-  struct sevicos servico[255];
   int opcao;
 
   do {
+    system("cls||clear");
     printf("+-----------------------+\n");
     printf("|          YoPet        |\n");
     printf("|-----------------------|\n");
@@ -37,16 +87,17 @@ int main(int argc, char const *argv[]) {
 
     switch (opcao) {
       case 1:
+        cadastrarProduto();
         //menuAdministrativo();
         break;
       case 2:
         //menuLoja();
         break;
       case 3:
-        printf("Obrigado por utilizar nosso programa.\n", );
+        printf("Obrigado por utilizar nosso programa.\n");
         break;
       default:
-        printf("Opcao invalidaS\n");
+        printf("Opcao invalidas\n");
     }
   } while(opcao != 3);
 

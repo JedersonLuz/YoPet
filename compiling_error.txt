@@ -1,0 +1,11 @@
+/home/jederson_luz/git/YoPet/yopet.c: In function ‘cadastrarProduto’:
+/home/jederson_luz/git/YoPet/yopet.c:36:13: warning: format ‘%s’ expects argument of type ‘char *’, but argument 2 has type ‘char (*)[255]’ [-Wformat=]
+       scanf("%s", &mensagem);
+             ^
+/home/jederson_luz/git/YoPet/yopet.c:47:13: warning: format ‘%s’ expects argument of type ‘char *’, but argument 2 has type ‘char (*)[255]’ [-Wformat=]
+       scanf("%s", &mensagem);
+             ^
+/home/jederson_luz/git/YoPet/yopet.c: In function ‘main’:
+/home/jederson_luz/git/YoPet/yopet.c:95:59: error: expected expression before ‘)’ token
+         printf("Obrigado por utilizar nosso programa.\n", );
+                                                           ^
