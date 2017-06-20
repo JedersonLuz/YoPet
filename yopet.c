@@ -66,6 +66,7 @@ void cadastrarProduto () {
       contProd++;
     }
   } while(opcao != '1');
+}
 
 void menuAdministrativo(int opcao_ADM){
 		char buscarProduto[255], buscarServico[255];
@@ -89,6 +90,7 @@ void menuAdministrativo(int opcao_ADM){
     	printf("|11 - Caixa             |\n");
     	printf("|12 - Voltar            |\n");
     	printf("+-----------------------+\n");
+
     	scanf("%d",&opcao_ADM);
 
     	switch(opcao_ADM){
@@ -124,7 +126,7 @@ void menuAdministrativo(int opcao_ADM){
 		}
 }
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[]){
   int opcao;
 
   do {
