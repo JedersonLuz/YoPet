@@ -71,7 +71,7 @@ void cadastrarProduto () {
 void menuAdministrativo(int opcao_ADM){
 		char buscarProduto[255], buscarServico[255];
 		printf("+-----------------------+\n");
-   		printf("|          YoPet        |\n");
+   		printf("|         YoPet         |\n");
     	printf("|-----------------------|\n");
     	printf("|  Menu Administrativo  |\n");
     	printf("|-----------------------|\n");
@@ -128,11 +128,11 @@ void menuAdministrativo(int opcao_ADM){
 
 void menuLoja(){
     system("cls||clear");
-    int opcao_loja;
+    int opcao_Cliente;
     printf("+-----------------------+\n");
-    printf("|          YoPet        |\n");
+    printf("|         YoPet         |\n");
     printf("|-----------------------|\n");
-    printf("|  Menu Administrativo  |\n");
+    printf("|     Menu Cliente      |\n");
     printf("|-----------------------|\n");
     printf("|Digtie a opcao desejada|\n");
     printf("|-----------------------|\n");
@@ -142,8 +142,8 @@ void menuLoja(){
     printf("|4 - Lista de Serviço   |\n");
     printf("|5 - Buscar Produto     |\n");
     printf("|6 - Buscar Serviço     |\n");
-    printf("|+---------------------+|\n");
-    scanf("%d",&opcao_ADM);
+    printf("+-----------------------+\n");
+    scanf("%d",&opcao_Cliente);
 
 }
 
@@ -165,11 +165,12 @@ int main(int argc, char const *argv[]){
 
     switch (opcao) {
       case 1:
-        cadastrarProduto();
+        cadastrarProduto();//Teste
         //menuAdministrativo();
         break;
       case 2:
-        //menuLoja();
+          menuLoja();
+        //menuCliente();
         break;
       case 3:
         printf("Obrigado por utilizar nosso programa.\n");
