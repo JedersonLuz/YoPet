@@ -7,13 +7,13 @@
 #define MAX 255
 
 struct produtos {
-  int id, quantidade;
-  char nome[255];
+  int idpro, quantidade;
+  char nome[MAX];
   float preco;
 };
 
 struct sevicos {
-  int id;
+  int idpro;
   char nomeServico[MAX], nomeAnimal[MAX], nomeDono[MAX];
   float preco;
 };
@@ -21,6 +21,22 @@ struct sevicos {
 struct produtos produto[MAX];
 struct sevicos servico[MAX];
 int contProd = 0;
+
+/*void idGerador(){
+    int testeid,testeexi=0,i=0,idid;
+    testeid = 1000 + (rand()%1000);
+    contProd--;
+    do{
+        idid=produto[testeexi].idpro;
+        if (testeid!=idid){
+            produto[contProd].idpro = testeid;
+            i=1;
+            testeexi=0;
+        }
+        testeexi++;
+    }while(i!=1);
+}*/
+
 
 void cadastrarProduto () {
   char mensagem[255];
@@ -58,8 +74,10 @@ void cadastrarProduto () {
         produto[contProd].quantidade = test;
       }
     } while(test == 0);
-
-    printf("\nNome: %s\n", produto[contProd].nome);
+    system("cls||clear");
+    printf("Confira se esta correto\n");
+    //printf("ID gerado automaticamente: %d\n", produto[contProd].idpro);
+    printf("Nome: %s\n", produto[contProd].nome);
     printf("Preco: %.2f\n", produto[contProd].preco);
     printf("Quantidade: %d\n", produto[contProd].quantidade);
     printf("Deseja confirmar o cadastro?\n[1]-Sim\n[2]-Não\n");
@@ -67,11 +85,12 @@ void cadastrarProduto () {
     scanf("%c", &opcao);
     if (opcao == '1') {
       printf("Cadastro conclido.\n");
+      //idGerador();
       contProd++;
+
     }
   } while(opcao != '1');
-    //printf("Cadastrar outro produto?\n[1]-Sim\n[2]-Não\n");
-    //scanf("%c",opcao1);
+    menuAdministrativo();
 }
 
 void menuAdministrativo(){
