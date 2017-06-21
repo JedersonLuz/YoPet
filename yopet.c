@@ -4,6 +4,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 255
 
 struct produtos {
   int id, quantidade;
@@ -13,19 +14,22 @@ struct produtos {
 
 struct sevicos {
   int id;
-  char nomeServico[255], nomeAnimal[255], nomeDono[255];
+  char nomeServico[MAX], nomeAnimal[MAX], nomeDono[MAX];
   float preco;
 };
 
-struct produtos produto[255];
-struct sevicos servico[255];
+struct produtos produto[MAX];
+struct sevicos servico[MAX];
 int contProd = 0;
 
 void cadastrarProduto () {
   char mensagem[255];
-  int test;
-  char opcao;
-
+  float test;
+  char opcao,opcao1;
+    system("cls||clear");
+    printf("+-----------------------+\n");
+    printf("|   Cadastrar produto   |\n");
+    printf("+-----------------------+\n");
   do {
     //idGenerator();
     printf("Digite o nome do produto: \n");
@@ -56,9 +60,9 @@ void cadastrarProduto () {
     } while(test == 0);
 
     printf("\nNome: %s\n", produto[contProd].nome);
-    printf("Preco: %f\n", produto[contProd].preco);
+    printf("Preco: %.2f\n", produto[contProd].preco);
     printf("Quantidade: %d\n", produto[contProd].quantidade);
-    printf("Deseja confirmar o cadastro? 1 - Sim/2 - Nao\n");
+    printf("Deseja confirmar o cadastro?\n[1]-Sim\n[2]-Não\n");
     setbuf(stdin, NULL);
     scanf("%c", &opcao);
     if (opcao == '1') {
@@ -66,36 +70,38 @@ void cadastrarProduto () {
       contProd++;
     }
   } while(opcao != '1');
+    //printf("Cadastrar outro produto?\n[1]-Sim\n[2]-Não\n");
+    //scanf("%c",opcao1);
 }
 
-void menuAdministrativo(int opcao_ADM){
-		char buscarProduto[255], buscarServico[255];
-		printf("+-----------------------+\n");
-   		printf("|         YoPet         |\n");
-    	printf("|-----------------------|\n");
-    	printf("|  Menu Administrativo  |\n");
-    	printf("|-----------------------|\n");
-    	printf("|Digtie a opcao desejada|\n");
-    	printf("|-----------------------|\n");
-    	printf("|1 - Cadastrar Produto  |\n");
-    	printf("|2 - Cadastrar Servi�o  |\n");
-    	printf("|3 - Listar produtos    |\n");
-    	printf("|4 - Listar Servi�os    |\n");
-    	printf("|5 - Buscar Produtos    |\n");
-    	printf("|6 - Buscar Servi�os    |\n");
-    	printf("|7 - Deletar Produto    |\n");
-    	printf("|8 - Deletar Servi�os   |\n");
-    	printf("|9 - Atualizar Produtos |\n");
-    	printf("|10 - Atualizar Servi�os|\n");
-    	printf("|11 - Caixa             |\n");
-    	printf("|12 - Voltar            |\n");
-    	printf("+-----------------------+\n");
-
-    	scanf("%d",&opcao_ADM);
+void menuAdministrativo(){
+    int opcao_ADM;
+    system("cls||clear");
+    printf("+-----------------------+\n");
+    printf("|         YoPet         |\n");
+    printf("|-----------------------|\n");
+    printf("|  Menu Administrativo  |\n");
+    printf("|-----------------------|\n");
+    printf("|Digtie a opcao desejada|\n");
+    printf("|-----------------------|\n");
+    printf("|1 - Cadastrar Produto  |\n");
+    printf("|2 - Cadastrar Servi�o  |\n");
+    printf("|3 - Listar produtos    |\n");
+    printf("|4 - Listar Servi�os    |\n");
+    printf("|5 - Buscar Produtos    |\n");
+    printf("|6 - Buscar Servi�os    |\n");
+    printf("|7 - Deletar Produto    |\n");
+    printf("|8 - Deletar Servi�os   |\n");
+    printf("|9 - Atualizar Produtos |\n");
+    printf("|10 - Atualizar Servi�os|\n");
+    printf("|11 - Caixa             |\n");
+    printf("|12 - Voltar            |\n");
+    printf("+-----------------------+\n");
+    scanf("%d",&opcao_ADM);
 
     	switch(opcao_ADM){
     		case 1:
-
+                cadastrarProduto();
     			break;
     		case 2:
 
@@ -132,7 +138,7 @@ void menuLoja(){
     printf("+-----------------------+\n");
     printf("|         YoPet         |\n");
     printf("|-----------------------|\n");
-    printf("|     Menu Cliente      |\n");
+    printf("|       Menu Loja       |\n");
     printf("|-----------------------|\n");
     printf("|Digtie a opcao desejada|\n");
     printf("|-----------------------|\n");
@@ -143,7 +149,7 @@ void menuLoja(){
     printf("|5 - Buscar Produto     |\n");
     printf("|6 - Buscar Serviço     |\n");
     printf("+-----------------------+\n");
-    scanf("%d",&opcao_Cliente);
+    //scanf("%d",&opcao_Cliente);
 
 }
 
@@ -151,7 +157,7 @@ int main(int argc, char const *argv[]){
   int opcao;
 
   do {
-    system("cls||clear");
+    //system("cls||clear");
     printf("+-----------------------+\n");
     printf("|          YoPet        |\n");
     printf("|-----------------------|\n");
@@ -165,7 +171,7 @@ int main(int argc, char const *argv[]){
 
     switch (opcao) {
       case 1:
-        cadastrarProduto();//Teste
+        menuAdministrativo();//Teste
         //menuAdministrativo();
         break;
       case 2:
