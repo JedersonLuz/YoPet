@@ -7,13 +7,13 @@
 #define MAX 255
 
 struct produtos {
-  int idpro, quantidade;
+  int id, quantidade;
   char nome[MAX];
   float preco;
 };
 
 struct sevicos {
-  int idpro;
+  int id;
   char nomeServico[MAX], nomeAnimal[MAX], nomeDono[MAX];
   float preco;
 };
@@ -23,19 +23,13 @@ struct sevicos servico[MAX];
 int contProd = 0;
 
 /*void idGerador(){
-    int testeid,testeexi=0,i=0,idid;
-    testeid = 1000 + (rand()%1000);
+    int idn,i;
+    idn=(1000+rand()%1000);
     contProd--;
-    do{
-        idid=produto[testeexi].idpro;
-        if (testeid!=idid){
-            produto[contProd].idpro = testeid;
-            i=1;
-            testeexi=0;
-        }
-        testeexi++;
-    }while(i!=1);
-}*/
+    if(idn!=produto[contProd].id){
+        produto[contProd].id=idn;
+    }
+};*/
 
 
 void cadastrarProduto () {
@@ -74,9 +68,17 @@ void cadastrarProduto () {
         produto[contProd].quantidade = test;
       }
     } while(test == 0);
+    int idn,i,testa=0;//gerar id
+    idn=(1000+rand()%1000);
+    do{
+    if(idn!=produto[contProd].id){
+        produto[contProd].id=idn;
+        testa=1;
+    }
+    }while(testa==0);
     system("cls||clear");
     printf("Confira se esta correto\n");
-    //printf("ID gerado automaticamente: %d\n", produto[contProd].idpro);
+    printf("ID gerado: %d\n", produto[contProd].id);
     printf("Nome: %s\n", produto[contProd].nome);
     printf("Preco: %.2f\n", produto[contProd].preco);
     printf("Quantidade: %d\n", produto[contProd].quantidade);
