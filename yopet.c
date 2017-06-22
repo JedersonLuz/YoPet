@@ -22,15 +22,22 @@ struct produtos produto[MAX];
 struct sevicos servico[MAX];
 int contProd = 0;
 
-/*void idGerador(){
-    int idn,i;
-    idn=(1000+rand()%1000);
-    contProd--;
-    if(idn!=produto[contProd].id){
-        produto[contProd].id=idn;
-    }
-};*/
-
+void produtoCadastro(){
+    char opcao1;
+    printf("\nDigite a opcao desejada\n");
+    printf("[1] - Cadadastrar produto\n[2] - Ir para o menu administrativo\n");
+        do{
+            setbuf(stdin,NULL);
+            scanf("%c", &opcao1);
+            if(opcao1=='1'){
+                cadastrarProduto();
+            }else{}if(opcao1=='2'){
+                menuAdministrativo();
+            }else{
+                printf("OPCAO INVALIDA!!!\nTENTE NOVAMENTE\n");
+            }
+        }while(opcao1!='1'||opcao1!='2');
+}
 
 void cadastrarProduto () {
   char mensagem[255];
@@ -68,31 +75,41 @@ void cadastrarProduto () {
         produto[contProd].quantidade = test;
       }
     } while(test == 0);
-    int idn,i,testa=0;//gerar id
-    idn=(1000+rand()%1000);
+    int idn,i,testa,testlocal;
+    idn=(1000+rand()%1000);//gerar id entre 1000 e 1999
+    testlocal=0;
+    testa=0;
     do{
-    if(idn!=produto[contProd].id){
-        produto[contProd].id=idn;
-        testa=1;
-    }
+        if(idn!=produto[testlocal].id){
+            produto[contProd].id=idn;
+            testa=1;
+        }else{
+            testlocal++;
+            testa=0;
+        }
     }while(testa==0);
     system("cls||clear");
-    printf("Confira se esta correto\n");
+    printf("Confira se esta correto\n\n");
     printf("ID gerado: %d\n", produto[contProd].id);
     printf("Nome: %s\n", produto[contProd].nome);
     printf("Preco: %.2f\n", produto[contProd].preco);
     printf("Quantidade: %d\n", produto[contProd].quantidade);
-    printf("Deseja confirmar o cadastro?\n[1]-Sim\n[2]-Não\n");
+    printf("\nDeseja confirmar o cadastro?\n[1]-Sim\n[2]-Não\n");
+    do{
     setbuf(stdin, NULL);
     scanf("%c", &opcao);
     if (opcao == '1') {
-      printf("Cadastro conclido.\n");
-      //idGerador();
-      contProd++;
-
+        printf("Cadastro conclido.\n");
+        contProd++;
+        produtoCadastro();
+    }else{}if(opcao=='2'){
+        printf("Cadastro cancelado.\n");
+        produtoCadastro();
+    }else{
+        printf("OPCAO INVALIDA!!!\nTENTE NOVAMENTE\n");
     }
+    }while(opcao1!='1'||opcao1!='2');
   } while(opcao != '1');
-    menuAdministrativo();
 }
 
 void menuAdministrativo(){
@@ -128,7 +145,7 @@ void menuAdministrativo(){
 
 				break;
 			case 3:
-
+                //listarProduto();
 				break;
 			case 4:
 
