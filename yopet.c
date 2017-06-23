@@ -66,6 +66,7 @@ void cadastrarProduto () {
       contProd++;
     }
   } while(opcao != '1');
+}
 
 void menuAdministrativo(int opcao_ADM){
 		char buscarProduto[255], buscarServico[255];
@@ -77,25 +78,25 @@ void menuAdministrativo(int opcao_ADM){
     	printf("|Digtie a opcao desejada|\n");
     	printf("|-----------------------|\n");
     	printf("|1 - Cadastrar Produto  |\n");
-    	printf("|2 - Cadastrar Servi�o  |\n");
+    	printf("|2 - Cadastrar Servico  |\n");
     	printf("|3 - Listar produtos    |\n");
-    	printf("|4 - Listar Servi�os    |\n");
+    	printf("|4 - Listar Servicos    |\n");
     	printf("|5 - Buscar Produtos    |\n");
-    	printf("|6 - Buscar Servi�os    |\n");
+    	printf("|6 - Buscar Servicos    |\n");
     	printf("|7 - Deletar Produto    |\n");
-    	printf("|8 - Deletar Servi�os   |\n");
+    	printf("|8 - Deletar Servicos   |\n");
     	printf("|9 - Atualizar Produtos |\n");
-    	printf("|10 - Atualizar Servi�os|\n");
+    	printf("|10 - Atualizar Servicos|\n");
     	printf("|11 - Caixa             |\n");
     	printf("|12 - Voltar            |\n");
     	printf("+-----------------------+\n");
     	scanf("%d",&opcao_ADM);
 
     	switch(opcao_ADM){
-    		case 1:
+    	case 1:
 
-    			break;
-    		case 2:
+    		break;
+    	case 2:
 
 				break;
 			case 3:
@@ -109,8 +110,8 @@ void menuAdministrativo(int opcao_ADM){
 			case 6:
 				break;
 			case 7:
-    			break;
-    		case 8:
+    		break;
+    	case 8:
 				break;
 			case 9:
 				break;
@@ -124,8 +125,8 @@ void menuAdministrativo(int opcao_ADM){
 		}
 }
 
-int main(int argc, char const *argv[]) {
-  int opcao;
+int main() {
+  char opcao;
 
   do {
     system("cls||clear");
@@ -138,23 +139,23 @@ int main(int argc, char const *argv[]) {
     printf("|2 - Menu da Loja       |\n");
     printf("|3 - Sair do programa   |\n");
     printf("+-----------------------+\n");
-    scanf("%d", &opcao);
+    scanf("%c", &opcao);
 
     switch (opcao) {
-      case 1:
+      case '1':
         cadastrarProduto();
         //menuAdministrativo();
         break;
-      case 2:
+      case '2':
         //menuLoja();
         break;
-      case 3:
+      case '3':
         printf("Obrigado por utilizar nosso programa.\n");
         break;
       default:
         printf("Opcao invalidas\n");
     }
-  } while(opcao != 3);
+  }while(opcao != '3');
 
   return 0;
 }
