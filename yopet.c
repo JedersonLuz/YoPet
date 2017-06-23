@@ -4,27 +4,72 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 255//Constante para classificar o tamanho total dos vetores no programa
 
+//struct para criação de produtos no sistema
 struct produtos {
   int id, quantidade;
-  char nome[255];
+  char nome[MAX];
   float preco;
 };
 
+//struct para criação de serviços no sistema
 struct sevicos {
   int id;
-  char nomeServico[255], nomeAnimal[255], nomeDono[255];
+  char nomeServico[MAX], nomeAnimal[MAX], nomeDono[MAX];
   float preco;
 };
 
-struct produtos produto[255];
-struct sevicos servico[255];
-int contProd = 0;
+struct produtos produto[MAX];//istância da struct de produtos em formato de vetor
+struct sevicos servico[MAX];//istância da struct de serviços em formato de vetor
+int contProd = 0;//váriavel para auxiliar no controle do vetor de produtos
+int contServ = 0;//váriavel para auxiliar no controle do vetor de serviços
+
+//Função para auxiliar outras na incerção de valores de ponto flutuante em váriaveis com segurança utilizando atof
+int inputFloat(char mensagem[MAX]) {
+  float valor;
+  char novaMensagem[MAX];
+
+  valor = atof(mensagem);
+
+  do {
+    if (valor == 0) {
+      printf("Entrada invalida, por favor digite novamente.\n");
+      scanf("%s", novaMensagem);
+      valor = atof(novaMensagem);
+    }
+  } while(valor == 0);
+
+  return valor;
+}
+
+//Função para auxiliar outras na incerção de valores inteiros em variáveis com segurança utilizando atoi
+int inputInt(char mensagem[MAX]) {
+  int valor;
+  char novaMensagem[MAX];
+
+  valor = atoi(mensagem);
+
+  do {
+    if (valor == 0) {
+      printf("Entrada invalida, por favor digite novamente.\n");
+      scanf("%s", novaMensagem);
+      valor = atoi(novaMensagem);
+    }
+  } while(valor == 0);
+
+  return valor;
+}
 
 void cadastrarProduto () {
   char mensagem[255];
-  int test;
+  float test;
   char opcao;
+
+  system("cls||clear");
+  printf("+-----------------------+\n");
+  printf("|   Cadastrar produto   |\n");
+  printf("+-----------------------+\n");
 
   do {
     //idGenerator();
@@ -32,100 +77,158 @@ void cadastrarProduto () {
     setbuf(stdin, NULL);
     scanf("%[^\n]s", produto[contProd].nome);
     setbuf(stdin, NULL);
-    do {
-      printf("Digite o preco do produto: \n");
-      setbuf(stdin, NULL);
-      scanf("%s", mensagem);
-      test = atof(mensagem);
-      if (test == 0) {
-        printf("Entrada invalida.\n");
-      } else {
-        produto[contProd].preco = test;
-      }
-    } while(test == 0);
-    do {
-      printf("Digite a quantidade do produto: \n");
-      setbuf(stdin, NULL);
-      scanf("%s", mensagem);
-      test = atoi(mensagem);
-      if (test == 0) {
-        printf("Entrada invalida.\n");
-      } else {
-        produto[contProd].quantidade = test;
-      }
-    } while(test == 0);
 
-    printf("\nNome: %s\n", produto[contProd].nome);
-    printf("Preco: %f\n", produto[contProd].preco);
+    printf("Digite o preco do produto: \n");
+    setbuf(stdin, NULL);
+    scanf("%s", mensagem);
+    produto[contProd].preco = inputFloat(mensagem);
+
+    printf("Digite a quantidade do produto: \n");
+    setbuf(stdin, NULL);
+    scanf("%s", mensagem);
+    produto[contProd].quantidade = inputInt(mensagem);
+
+    int idn,i,testa,testlocal;
+    idn=(1000+rand()%1000);//gerar id entre 1000 e 1999
+    testlocal=0;
+    testa=0;
+    do{
+        if(idn!=produto[testlocal].id){
+            produto[contProd].id=idn;
+            testa=1;
+        }else{
+            testlocal++;
+            testa=0;
+        }
+    }while(testa==0);
+
+    system("cls||clear");
+    printf("Confira se esta correto\n\n");
+    printf("ID gerado: %d\n", produto[contProd].id);
+    printf("Nome: %s\n", produto[contProd].nome);
+    printf("Preco: %.2f\n", produto[contProd].preco);
     printf("Quantidade: %d\n", produto[contProd].quantidade);
-    printf("Deseja confirmar o cadastro? 1 - Sim/2 - Nao\n");
+    printf("\nDeseja confirmar o cadastro?\n[1]-Sim\n[2]-Não\n");
     setbuf(stdin, NULL);
     scanf("%c", &opcao);
-    if (opcao == '1') {
-      printf("Cadastro conclido.\n");
-      contProd++;
-    }
+    
   } while(opcao != '1');
 }
 
-void menuAdministrativo(int opcao_ADM){
-		char buscarProduto[255], buscarServico[255];
-		printf("+-----------------------+\n");
-   		printf("|          YoPet        |\n");
-    	printf("|-----------------------|\n");
-    	printf("|  Menu Administrativo  |\n");
-    	printf("|-----------------------|\n");
-    	printf("|Digtie a opcao desejada|\n");
-    	printf("|-----------------------|\n");
-    	printf("|1 - Cadastrar Produto  |\n");
-    	printf("|2 - Cadastrar Servico  |\n");
-    	printf("|3 - Listar produtos    |\n");
-    	printf("|4 - Listar Servicos    |\n");
-    	printf("|5 - Buscar Produtos    |\n");
-    	printf("|6 - Buscar Servicos    |\n");
-    	printf("|7 - Deletar Produto    |\n");
-    	printf("|8 - Deletar Servicos   |\n");
-    	printf("|9 - Atualizar Produtos |\n");
-    	printf("|10 - Atualizar Servicos|\n");
-    	printf("|11 - Caixa             |\n");
-    	printf("|12 - Voltar            |\n");
-    	printf("+-----------------------+\n");
-    	scanf("%d",&opcao_ADM);
+void menuAdministrativo(){
+  int opcao;
+  char mensagem[MAX];
 
-    	switch(opcao_ADM){
-    	case 1:
+  do {
+    printf("+-----------------------+\n");
+    printf("|          YoPet        |\n");
+    printf("|-----------------------|\n");
+    printf("|  Menu Administrativo  |\n");
+    printf("|-----------------------|\n");
+    printf("|Digtie a opcao desejada|\n");
+    printf("|-----------------------|\n");
+    printf("|1 - Cadastrar Produto  |\n");
+    printf("|2 - Cadastrar Servico  |\n");
+    printf("|3 - Listar produtos    |\n");
+    printf("|4 - Listar Servicos    |\n");
+    printf("|5 - Buscar Produto     |\n");
+    printf("|6 - Buscar Servico     |\n");
+    printf("|7 - Deletar Produto    |\n");
+    printf("|8 - Deletar Servico    |\n");
+    printf("|9 - Atualizar Produto  |\n");
+    printf("|10 - Atualizar Servico |\n");
+    printf("|11 - Caixa             |\n");
+    printf("|12 - Voltar            |\n");
+    printf("+-----------------------+\n");
+    scanf("%s", mensagem);
+    opcao = inputInt(mensagem);
 
-    		break;
-    	case 2:
-
-				break;
-			case 3:
-
-				break;
-			case 4:
-
-				break;
-			case 5:
-				break;
-			case 6:
-				break;
-			case 7:
-    		break;
-    	case 8:
-				break;
-			case 9:
-				break;
-			case 10:
-				break;
-			case 11:
-				break;
-			case 12:
-				break;
-
-		}
+    switch(opcao){
+      case 1:
+        //cadastrarProduto();
+        break;
+      case 2:
+        //cadastrarServico();
+        break;
+      case 3:
+        //listarProdutos();
+        break;
+      case 4:
+        //listarServicos();
+        break;
+      case 5:
+        //buscarProduto();
+        break;
+      case 6:
+        //buscarServico();
+        break;
+      case 7:
+        //deletarProduto();
+        break;
+      case 8:
+        //deletarServico();
+        break;
+      case 9:
+        //atualizarProduto();
+        break;
+      case 10:
+        //atualizarServico();
+        break;
+      case 11:
+        //caixa();
+        break;
+      case 12:
+        break;
+      default:
+        printf("Opcao invalidas\n");
+    }
+  } while(opcao != 12);
 }
 
-int main() {
+void menuLoja(){
+  char opcao;
+
+  system("cls||clear");
+  printf("+-----------------------+\n");
+  printf("|         YoPet         |\n");
+  printf("|-----------------------|\n");
+  printf("|       Menu Loja       |\n");
+  printf("|-----------------------|\n");
+  printf("|Digtie a opcao desejada|\n");
+  printf("|-----------------------|\n");
+  printf("|1 - Contratar Serviço  |\n");
+  printf("|2 - Comprar produto    |\n");
+  printf("|3 - Lista de Produto   |\n");
+  printf("|4 - Lista de Serviço   |\n");
+  printf("|5 - Buscar Produto     |\n");
+  printf("|6 - Buscar Serviço     |\n");
+  printf("+-----------------------+\n");
+  scanf("%c", &opcao);
+
+  switch (opcao) {
+    case 1:
+      //contratarServico();
+  		break;
+  	case 2:
+      //comprarProduto();
+			break;
+		case 3:
+      //listarProdutos();
+			break;
+		case 4:
+      //listarServicos();
+			break;
+		case 5:
+      //buscarProdutos();
+			break;
+		case 6:
+      //buscarServicos();
+			break;
+  }
+
+}
+
+int main(int argc, char const *argv[]) {
   char opcao;
 
   do {
