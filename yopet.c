@@ -160,7 +160,53 @@ void cadastrarServico () {
 
   } while(opcao != '1');
 }
-
+void listarProdutos(){
+	int i, op;
+	do{
+		system("cls||clear");	
+		printf("+-----------------------+\n");
+  		printf("|   Lista de produtos   |\n");
+  		printf("+-----------------------+\n");
+		for ( i = 0 ; i < contProd; i++){
+			printf("ID: %d\n", produto[i].id);
+    		printf("Nome do produto: %s\n", produto[i].nome);
+    		printf("Preco: %.2f\n", produto[i].preco);
+    		printf("Quantidade em estoque: %d\n", produto[i].quantidade);
+    		printf("\n");
+		}
+		printf("Deseja alterar dados? \n [1]-Sim\n [2]-Não");
+		scanf("%d",&op);
+		if (op == 1 ){
+			//atualizarProduto();
+			printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        	setbuf(stdin, NULL);
+        	getchar();
+		}
+	}while(op != 2);
+}
+void listarServicos(){
+	int i, op;
+	do{
+		system("cls||clear");	
+		printf("+-----------------------+\n");
+  		printf("|   Lista de servicos   |\n");
+  		printf("+-----------------------+\n");
+		for ( i = 0 ; i < contServ; i++){
+			printf("ID : %d\n", servico[i].id);
+    		printf("Nome do servico: %s\n", servico[i].nomeServico);
+    		printf("Preco: %.2f\n", servico[i].preco);
+    		printf("\n");
+		}
+		printf("Deseja alterar dados? \n [1]-Sim\n [2]-Não\n");
+		scanf("%d",&op);
+		if (op == 1 ){
+			//atualizarservico();
+			printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        	setbuf(stdin, NULL);
+        	getchar();
+		}
+	}while(op != 2);
+}
 void menuAdministrativo(){
   int opcao;
   char mensagem[MAX];
@@ -198,16 +244,10 @@ void menuAdministrativo(){
         cadastrarServico();
         break;
       case 3:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //listarProdutos();
+        listarProdutos();
         break;
       case 4:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //listarServicos();
+        listarServicos();
         break;
       case 5:
         printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
