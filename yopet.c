@@ -281,6 +281,7 @@ void menuLoja(){
     printf("|6 - Buscar Serviço     |\n");
     printf("|7 - Voltar             |\n");
     printf("+-----------------------+\n");
+    setbuf(stdin, NULL);
     scanf("%c", &opcao);
 
     switch (opcao) {
@@ -344,6 +345,7 @@ int main(int argc, char const *argv[]) {
     printf("|2 - Menu da Loja       |\n");
     printf("|3 - Sair do programa   |\n");
     printf("+-----------------------+\n");
+    setbuf(stdin, NULL);
     scanf("%c", &opcao);
 
     switch (opcao) {
