@@ -328,7 +328,6 @@ void menuLoja(){
         getchar();
     }
   } while(opcao != 7);
-
 }
 
 int main(int argc, char const *argv[]) {
