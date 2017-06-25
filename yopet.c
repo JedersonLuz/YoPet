@@ -160,53 +160,56 @@ void cadastrarServico () {
 
   } while(opcao != '1');
 }
+
 void listarProdutos(){
 	int i, op;
 	do{
-		system("cls||clear");	
+		system("cls||clear");
 		printf("+-----------------------+\n");
-  		printf("|   Lista de produtos   |\n");
-  		printf("+-----------------------+\n");
+  	printf("|   Lista de produtos   |\n");
+  	printf("+-----------------------+\n");
 		for ( i = 0 ; i < contProd; i++){
-			printf("ID: %d\n", produto[i].id);
+		    printf("ID: %d\n", produto[i].id);
     		printf("Nome do produto: %s\n", produto[i].nome);
     		printf("Preco: %.2f\n", produto[i].preco);
     		printf("Quantidade em estoque: %d\n", produto[i].quantidade);
     		printf("\n");
 		}
-		printf("Deseja alterar dados? \n [1]-Sim\n [2]-N�o");
+		printf("Deseja alterar dados? \n [1]-Sim\n [2]-N�o");
 		scanf("%d",&op);
 		if (op == 1 ){
-			//atualizarProduto();
-			printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        	setbuf(stdin, NULL);
-        	getchar();
+		    //atualizarProduto();
+        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        setbuf(stdin, NULL);
+        getchar();
 		}
 	}while(op != 2);
 }
+
 void listarServicos(){
 	int i, op;
 	do{
-		system("cls||clear");	
+		system("cls||clear");
 		printf("+-----------------------+\n");
-  		printf("|   Lista de servicos   |\n");
-  		printf("+-----------------------+\n");
+  	printf("|   Lista de servicos   |\n");
+  	printf("+-----------------------+\n");
 		for ( i = 0 ; i < contServ; i++){
-			printf("ID : %d\n", servico[i].id);
+		    printf("ID : %d\n", servico[i].id);
     		printf("Nome do servico: %s\n", servico[i].nomeServico);
     		printf("Preco: %.2f\n", servico[i].preco);
     		printf("\n");
 		}
-		printf("Deseja alterar dados? \n [1]-Sim\n [2]-N�o\n");
+		printf("Deseja alterar dados? \n [1]-Sim\n [2]-N�o\n");
 		scanf("%d",&op);
 		if (op == 1 ){
-			//atualizarservico();
-			printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        	setbuf(stdin, NULL);
-        	getchar();
+		    //atualizarservico();
+        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        setbuf(stdin, NULL);
+        getchar();
 		}
 	}while(op != 2);
 }
+
 void menuAdministrativo(){
   int opcao;
   char mensagem[MAX];
@@ -315,8 +318,8 @@ void menuLoja(){
     printf("|-----------------------|\n");
     printf("|1 - Contratar Serviço  |\n");
     printf("|2 - Comprar produto    |\n");
-    printf("|3 - Lista de Produto   |\n");
-    printf("|4 - Lista de Serviço   |\n");
+    printf("|3 - Listar de Produtos |\n");
+    printf("|4 - Listar de Serviços |\n");
     printf("|5 - Buscar Produto     |\n");
     printf("|6 - Buscar Serviço     |\n");
     printf("|7 - Voltar             |\n");
@@ -338,16 +341,10 @@ void menuLoja(){
         //comprarProduto();
       break;
       case 3:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //listarProdutos();
+        listarProdutos();
       break;
       case 4:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //listarServicos();
+        listarServicos();
       break;
       case 5:
         printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
