@@ -24,6 +24,7 @@ struct produtos produto[MAX];//istância da struct de produtos em formato de vet
 struct sevicos servico[MAX];//istância da struct de serviços em formato de vetor
 int contProd = 0;//váriavel para auxiliar no controle do vetor de produtos
 int contServ = 0;//váriavel para auxiliar no controle do vetor de serviços
+int chamaId = 0;
 
 //Função para auxiliar outras na incerção de valores de ponto flutuante em váriaveis com segurança utilizando atof
 int inputFloat(char mensagem[MAX]) {
@@ -61,6 +62,13 @@ int inputInt(char mensagem[MAX]) {
   return valor;
 }
 
+void idGerador(){
+    if(chamaId==1)
+        produto[contProd].id=contProd+1000;
+    else{}if(chamaId==2)
+        servico[contServ].id=contServ+5000;
+}
+
 //Função para cadastro de produtos vendidos pelo pet shop
 void cadastrarProduto () {
   char mensagem[255];
@@ -89,21 +97,8 @@ void cadastrarProduto () {
     setbuf(stdin, NULL);
     scanf("%s", mensagem);
     produto[contProd].quantidade = inputInt(mensagem);
-
-    int idn,i,testa,testlocal;
-    idn=(1000+rand()%1000);//gerar id entre 1000 e 1999
-    testlocal=0;
-    testa=0;
-    do{
-        if(idn!=produto[testlocal].id){
-            produto[contProd].id=idn;
-            testa=1;
-        }else{
-            testlocal++;
-            testa=0;
-        }
-    }while(testa==0);
-
+    chamaId=1;
+    idGerador();
     system("cls||clear");
     printf("Confira se esta correto\n\n");
     printf("ID gerado: %d\n", produto[contProd].id);
@@ -144,7 +139,8 @@ void cadastrarServico () {
     setbuf(stdin, NULL);
     scanf("%s", mensagem);
     servico[contServ].preco = inputFloat(mensagem);
-
+    chamaId=2;
+    //idGerador;
     system("cls||clear");
     printf("Confira se esta correto\n\n");
     printf("ID gerado: %d\n", servico[contServ].id);
@@ -163,7 +159,7 @@ void cadastrarServico () {
 void listarProdutos(){
 	int i, op;
 	do{
-		system("cls||clear");	
+		system("cls||clear");
 		printf("+-----------------------+\n");
   		printf("|   Lista de produtos   |\n");
   		printf("+-----------------------+\n");
@@ -187,7 +183,7 @@ void listarProdutos(){
 void listarServicos(){
 	int i, op;
 	do{
-		system("cls||clear");	
+		system("cls||clear");
 		printf("+-----------------------+\n");
   		printf("|   Lista de servicos   |\n");
   		printf("+-----------------------+\n");
@@ -207,6 +203,74 @@ void listarServicos(){
 		}
 	}while(op != 2);
 }
+
+void buscarProduto(){
+    int i,idProd,existe=0,locProd,op;
+    printf("Digite o numero do ID: ");
+    setbuf(stdin, NULL);
+    scanf("%d",&idProd);
+    for(i=0;i<=contProd;i++){
+        if(idProd==produto[i].id){
+            existe=1;
+            locProd=i;
+        }
+    }
+    if(existe==1){
+        printf("Nome do produto: %s\n", produto[locProd].nome);
+        printf("Preco: %.2f\n", produto[locProd].preco);
+        printf("Quantidade em estoque: %d\n", produto[locProd].quantidade);
+        printf("Deseja alterar dados? \n [1]-Sim\n [2]-N�o\n");
+        setbuf(stdin, NULL);
+		scanf("%d",&op);
+		if (op == 1 ){
+			//atualizarProduto();
+			printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        	setbuf(stdin, NULL);
+        	getchar();
+		}else{}if(op==2){
+            menuAdministrativo();
+		}
+    }else{
+        printf("ID inegistente!!!\n");
+        getchar();
+        menuAdministrativo();
+    }
+}
+
+void buscarServico(){
+    void buscarProduto(){
+    int i,idProd,existe=0,locProd,op;
+    printf("Digite o numero do ID: ");
+    setbuf(stdin, NULL);
+    scanf("%d",&idProd);
+    for(i=0;i<=contProd;i++){
+        if(idProd==produto[i].id){
+            existe=1;
+            locProd=i;
+        }
+    }
+    if(existe==1){
+        printf("Nome do servico: %s\n", servico[i].nomeServico);
+        printf("Preco: %.2f\n", servico[i].preco);
+        printf("Deseja alterar dados? \n [1]-Sim\n [2]-N�o\n");
+        setbuf(stdin, NULL);
+		scanf("%d",&op);
+		if (op == 1 ){
+			//atualizarservico();
+			printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        	setbuf(stdin, NULL);
+        	getchar();
+		}else{}if(op==2){
+            menuAdministrativo();
+		}
+    }else{
+        printf("ID inegistente!!!\n");
+        getchar();
+        menuAdministrativo();
+    }
+}
+}
+
 void menuAdministrativo(){
   int opcao;
   char mensagem[MAX];
@@ -250,10 +314,10 @@ void menuAdministrativo(){
         listarServicos();
         break;
       case 5:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
+        /*printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
         setbuf(stdin, NULL);
-        getchar();
-        //buscarProduto();
+        getchar();*/
+        buscarProduto();
         break;
       case 6:
         printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
