@@ -156,6 +156,7 @@ void cadastrarServico () {
 
   } while(opcao != '1');
 }
+
 void listarProdutos(){
 	int i, op;
 	do{
@@ -164,11 +165,11 @@ void listarProdutos(){
   		printf("|   Lista de produtos   |\n");
   		printf("+-----------------------+\n");
 		for ( i = 0 ; i < contProd; i++){
-			printf("ID: %d\n", produto[i].id);
-    		printf("Nome do produto: %s\n", produto[i].nome);
-    		printf("Preco: %.2f\n", produto[i].preco);
-    		printf("Quantidade em estoque: %d\n", produto[i].quantidade);
-    		printf("\n");
+            printf("ID: %d\n", produto[i].id);
+            printf("Nome do produto: %s\n", produto[i].nome);
+            printf("Preco: %.2f\n", produto[i].preco);
+            printf("Quantidade em estoque: %d\n", produto[i].quantidade);
+            printf("\n");
 		}
 		printf("Deseja alterar dados? \n [1]-Sim\n [2]-Não");
 		scanf("%d",&op);
@@ -271,6 +272,10 @@ void buscarServico(){
 }
 }
 
+void comprarProduto(){
+
+}
+
 void menuAdministrativo(){
   int opcao;
   char mensagem[MAX];
@@ -314,16 +319,10 @@ void menuAdministrativo(){
         listarServicos();
         break;
       case 5:
-        /*printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();*/
         buscarProduto();
         break;
       case 6:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //buscarServico();
+        buscarServico();
         break;
       case 7:
         printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
@@ -457,10 +456,7 @@ int main(int argc, char const *argv[]) {
         menuAdministrativo();
         break;
       case '2':
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //menuLoja();
+        menuLoja();
         break;
       case '3':
         printf("Obrigado por utilizar nosso programa.\n");
