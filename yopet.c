@@ -14,16 +14,18 @@ struct produtos {
   float preco;
 };
 
-struct produtos produto[MAX];//istância da struct de produtos em formato de vetor
-int contProd = 0;//váriavel para auxiliar no controle do vetor de produtos
+struct produtos produto[MAX];//istância da struct de produtos em formato de vetor para armazenar vários produtos
+int contProd = 0;//váriavel para auxiliar no controle do vetor de produtos, ela quem indica quantas produtos exitem
 
 //Função para auxiliar outras na incerção de valores de ponto flutuante em váriaveis com segurança utilizando atof
 int inputFloat(char mensagem[MAX]) {
-  float valor;
+  float valor;//Váriavel que irá receber o valor float após a verificação de segurança
 
-  valor = atof(mensagem);
+  valor = atof(mensagem);//Converção de string para float
 
+  //Força o usuário a digitar um valor válido, não permitindo a saída a não ser que o faça
   do {
+    //Se o valor for inválido pede que o usuário digite novamente
     if (valor == 0) {
       printf("Entrada invalida, por favor digite novamente.\n");
       setbuf(stdin, NULL);
@@ -32,16 +34,18 @@ int inputFloat(char mensagem[MAX]) {
     }
   } while(valor == 0);
 
-  return valor;
+  return valor;//retorna um valor válido para a outra função
 }
 
 //Função para auxiliar outras na incerção de valores inteiros em variáveis com segurança utilizando atoi
 int inputInt(char mensagem[MAX]) {
-  int valor;
+  int valor;//Váriavel que irá receber o valor int após a verificação de segurança
 
-  valor = atoi(mensagem);
+  valor = atoi(mensagem);//Converção de string para int
 
+  //Força o usuário a digitar um valor válido, não permitindo a saída a não ser que o faça
   do {
+    //Se o valor for inválido pede que o usuário digite novamente
     if (valor == 0) {
       printf("Entrada invalida, por favor digite novamente.\n");
       setbuf(stdin, NULL);
@@ -50,9 +54,10 @@ int inputInt(char mensagem[MAX]) {
     }
   } while(valor == 0);
 
-  return valor;
+  return valor;//retorna um valor válido para a outra função
 }
 
+//Cria o id dos produtos
 void idGerador(){
   produto[contProd].id=contProd+1000;
 }
@@ -66,40 +71,42 @@ int buscador () {
 
   printf("Digite o ID do produto: \n");
   setbuf(stdin, NULL);//limpa o buff do teclado
-  scanf("%s", mensagem);
-  idSearch = inputInt(mensagem);
+  scanf("%s", mensagem);//recebe o valor digitado como string
+  idSearch = inputInt(mensagem);//faz com que a váriavel receba um valor válido após verificar a string acima
 
   //Este for irá procurar o produto comparando os ids dos mesmos
   for(int i = 0; i <= contProd; i++){
       //Quando for encontrado o índice do produto ele será guardado em idFinded
       if(idSearch == produto[i].id){
-          idFinded = i;
+          idFinded = i;//Recebe a posição em que se encontra o produto procurado
           encontrado = 1;
           break;
       }
   }
 
+  //Caso não seja encontrado o produto ixibe a mensagem a seguir
   if (encontrado == 0) {
     printf("Produto não encontrado. Digite enter para continuar...\n");
-    setbuf(stdin, NULL);
-    getchar();
+    setbuf(stdin, NULL);//Limpa o buff do teclado
+    getchar();//Pausa a execução e aguarda que o usuário tecle algo para continuar
     return -1;//este retorno significa que o produto não foi encontrado
   } else {
-    return idFinded;
+    return idFinded;//este retorno informa a posição do produto que se deseja encontrar
   }
 }
 
 void deletarProduto () {
-  int locProd, opcao;
+  int locProd, opcao;//locProd receberá a posição do produto que se quer deletar
   char mensagem[MAX];
 
-  locProd = buscador();
+  locProd = buscador();//o buscador irá informar a locProd a posição do produto
 
-  system("cls||clear");
+  system("cls||clear");//Limpa tela
   printf("+-----------------------+\n");
   printf("|    Deletar produto    |\n");
   printf("+-----------------------+\n");
-  //Se locProd for diferente de -1 então o produto foi achado
+
+  //Se locProd for diferente de -1 então o produto foi achado e será exibido
   if(locProd != -1) {
     printf("Nome do produto: %s\n", produto[locProd].nome);
     printf("Preco: %.2f\n", produto[locProd].preco);
@@ -109,6 +116,7 @@ void deletarProduto () {
 	  scanf("%s", mensagem);
     opcao = inputInt(mensagem);
 
+    //Se opcao for 1, então será feita a realocação dos dados a seguir, removendo da lista o que foi deletado
 	  if (opcao == 1) {
 		    for (int i = locProd; i < contProd; i++) {
           if (produto[i].nome == "\0");
@@ -117,17 +125,18 @@ void deletarProduto () {
           produto[i].preco = produto[i+1].preco;
           produto[i].quantidade = produto[i+1].quantidade;
 		    }
-        contProd--;
+        contProd--;//Infoma que há um produto a menos cadastrado
 	  }
   }
 }
 
 void atualizarProduto () {
-  int locProd, opcao;
+  int locProd, opcao;//locProd receberá a posição do produto que se quer modificar
   char mensagem[MAX];
 
-  locProd = buscador();
+  locProd = buscador();//o buscador irá informar a locProd a posição do produto
 
+  //Repetirá a ação de atualizar até que o usuário confirme ter cadastrado como quer
   do {
     system("cls||clear");
     printf("+-----------------------+\n");
@@ -143,6 +152,7 @@ void atualizarProduto () {
       scanf("%s", mensagem);
       opcao = inputInt(mensagem);
 
+      //Se opcao for 1, então os dados na posição locProd serão alterados
       if (opcao == 1){
         printf("Digite o nome do produto: \n");
         setbuf(stdin, NULL);
@@ -179,7 +189,6 @@ void atualizarProduto () {
 //Função para cadastro de produtos vendidos pelo pet shop
 void cadastrarProduto () {
   char mensagem[MAX];
-  float test;
   int opcao;
 
   system("cls||clear");
@@ -188,21 +197,22 @@ void cadastrarProduto () {
   printf("+-----------------------+\n");
   printf("Digite o nome do produto: \n");
   setbuf(stdin, NULL);
-  scanf("%[^\n]s", produto[contProd].nome);
+  scanf("%[^\n]s", produto[contProd].nome);//produto na posição contProd recebe um nome digitado
   setbuf(stdin, NULL);
 
   printf("Digite o preco do produto: \n");
   setbuf(stdin, NULL);
-  scanf("%s", mensagem);
-  produto[contProd].preco = inputFloat(mensagem);
+  scanf("%s", mensagem);//mensagem recebe um valor digitado, para depois ser verificado
+  produto[contProd].preco = inputFloat(mensagem);//produto na posição contProd recebe um preco válido, ou seja, já verificado
 
   printf("Digite a quantidade do produto: \n");
   setbuf(stdin, NULL);
-  scanf("%s", mensagem);
-  produto[contProd].quantidade = inputInt(mensagem);
+  scanf("%s", mensagem);//mensagem recebe um valor digitado, para depois ser verificado
+  produto[contProd].quantidade = inputInt(mensagem);//produto na posição contProd recebe uma quantidade válida, ou seja, já verificada
 
-  idGerador();
+  idGerador();//Cria um id para o produto na posição contProd
 
+  //Pede para o usuário verificar se está tudo correto
   system("cls||clear");
   printf("Confira se esta correto\n\n");
   printf("ID gerado: %d\n", produto[contProd].id);
@@ -214,6 +224,7 @@ void cadastrarProduto () {
   scanf("%s", mensagem);
   opcao = inputInt(mensagem);
 
+  //Se for confirmado, então contProd é incrementado, caso contrário a função de cadastrar é chamada novamente
   if (opcao == 1) {
     contProd++;
   } else {
@@ -245,16 +256,16 @@ void listarProdutos(){
 }
 
 void buscarProduto(){
-  int locProd, opcao;
+  int locProd, opcao;//locProd receberá a posição do produto que se quer buscar
   char mensagem[MAX];
 
-  locProd = buscador();
+  locProd = buscador();//o buscador irá informar a locProd a posição do produto
 
   system("cls||clear");
   printf("+-----------------------+\n");
   printf("|     Buscar produto    |\n");
   printf("+-----------------------+\n");
-  //Se locProd for diferente de -1 então o produto foi achado
+  //Se locProd for diferente de -1 então o produto foi achado, portanto é exibido a seguir
   if(locProd != -1){
     printf("Nome do produto: %s\n", produto[locProd].nome);
     printf("Preco: %.2f\n", produto[locProd].preco);
@@ -265,14 +276,18 @@ void buscarProduto(){
   }
 }
 
-void comprarProduto(){
+void caixa () {
   /* code */
 }
 
-void menuAdministrativo(){
+void comprarProduto () {
+  /* code */
+}
+
+void menuAdministrativo () {
   int opcao;
   char mensagem[MAX];
-
+  
   do {
     system("cls||clear");
     printf("+-----------------------+\n");
