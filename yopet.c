@@ -273,6 +273,10 @@ void buscarServico(){
 }
 }
 
+void comprarProduto(){
+  /* code */
+}
+
 void menuAdministrativo(){
   int opcao;
   char mensagem[MAX];
@@ -319,10 +323,7 @@ void menuAdministrativo(){
         buscarProduto();
         break;
       case 6:
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //buscarServico();
+        buscarServico();
         break;
       case 7:
         printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
@@ -450,10 +451,7 @@ int main(int argc, char const *argv[]) {
         menuAdministrativo();
         break;
       case '2':
-        printf("Opcao em desenvolvimento. Digite enter para continuar...\n");
-        setbuf(stdin, NULL);
-        getchar();
-        //menuLoja();
+        menuLoja();
         break;
       case '3':
         printf("Obrigado por utilizar nosso programa.\n");
