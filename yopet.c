@@ -59,7 +59,12 @@ int inputInt(char mensagem[MAX]) {
 
 //Cria o id dos produtos
 void idGerador(){
-  produto[contProd].id=contProd+1000;
+  //Se não houver produtos cadastrados, então o id será 1, senão o id será igual o id do produto anterior mais 1
+  if (contProd == 0) {
+    produto[contProd].id = 1;
+  } else {
+    produto[contProd].id = (produto[contProd-1].id) + 1;
+  }
 }
 
 //O buscador serve para ajudar outras funções a acharem o produto que precisam para realizar seus objetivos
@@ -236,23 +241,21 @@ void listarProdutos(){
 	int opcao;
   char mensagem[MAX];
 
-	do{
-		system("cls||clear");
-		printf("+-----------------------+\n");
-  	printf("|   Lista de produtos   |\n");
-  	printf("+-----------------------+\n");
+	system("cls||clear");
+	printf("+-----------------------+\n");
+  printf("|   Lista de produtos   |\n");
+  printf("+-----------------------+\n");
 
-    for(int i = 0 ; i < contProd; i++){
-		    printf("ID: %d\n", produto[i].id);
-    		printf("Nome do produto: %s\n", produto[i].nome);
-    		printf("Preco: %.2f\n", produto[i].preco);
-    		printf("Quantidade em estoque: %d\n", produto[i].quantidade);
-    		printf("\n");
-		}
-    printf("Digite enter para continuar...\n");
-    setbuf(stdin, NULL);
-    getchar();
-	}while(opcao != 2);
+  for(int i = 0 ; i < contProd; i++){
+	    printf("ID: %d\n", produto[i].id);
+  		printf("Nome do produto: %s\n", produto[i].nome);
+  		printf("Preco: %.2f\n", produto[i].preco);
+  		printf("Quantidade em estoque: %d\n", produto[i].quantidade);
+  		printf("\n");
+	}
+  printf("Digite enter para continuar...\n");
+  setbuf(stdin, NULL);
+  getchar();
 }
 
 void buscarProduto(){
@@ -287,7 +290,7 @@ void comprarProduto () {
 void menuAdministrativo () {
   int opcao;
   char mensagem[MAX];
-  
+
   do {
     system("cls||clear");
     printf("+-----------------------+\n");
