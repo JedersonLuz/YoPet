@@ -70,7 +70,7 @@ void idGerador(){
 
 //O buscador serve para ajudar outras funções a acharem o produto que precisam para realizar seus objetivos
 int buscador () {
-  int idFinded;//idFinded guardará o índice onde se encontra o produto procurado
+  int idFinded, i;//idFinded guardará o índice onde se encontra o produto procurado
   int idSearch;//idSearch guardará o id do produto que se quer encontrar
   char mensagem[MAX];//várialvel para ser usada na blindagem de dados
   int encontrado = 0;//váriavel que diz se o produto foi encontrado ou não
@@ -81,7 +81,7 @@ int buscador () {
   idSearch = inputInt(mensagem);//faz com que a váriavel receba um valor válido após verificar a string acima
 
   //Este for irá procurar o produto comparando os ids dos mesmos
-  for(int i = 0; i <= contProd; i++){
+  for(i = 0; i <= contProd; i++){
       //Quando for encontrado o índice do produto ele será guardado em idFinded
       if(idSearch == produto[i].id){
           idFinded = i;//Recebe a posição em que se encontra o produto procurado
@@ -102,7 +102,7 @@ int buscador () {
 }
 
 void deletarProduto () {
-  int locProd, opcao;//locProd receberá a posição do produto que se quer deletar
+  int locProd, opcao, i;//locProd receberá a posição do produto que se quer deletar
   char mensagem[MAX];
 
 
@@ -120,18 +120,18 @@ void deletarProduto () {
     printf("Quantidade em estoque: %d\n", produto[locProd].quantidade);
     printf("Deseja realmente deletar os dados?\n[1]-Sim\n[2]-Nao\n");
     setbuf(stdin, NULL);
-	  scanf("%s", mensagem);
+    scanf("%s", mensagem);
     opcao = inputInt(mensagem);
 
     //Se opcao for 1, então será feita a realocação dos dados a seguir, removendo da lista o que foi deletado
 	  if (opcao == 1) {
-		    for (int i = locProd; i < contProd; i++) {
+        for (i = locProd; i < contProd; i++) {
           if (produto[i].nome == "\0");
           produto[i].id = produto[i+1].id;
           strcpy(produto[i].nome, produto[i+1].nome);
           produto[i].preco = produto[i+1].preco;
           produto[i].quantidade = produto[i+1].quantidade;
-		    }
+        }
         contProd--;//Infoma que há um produto a menos cadastrado
 	  }
   }
@@ -240,15 +240,15 @@ void cadastrarProduto () {
 }
 
 void listarProdutos(){
-	int opcao;
-  char mensagem[MAX];
+    int opcao, i;
+    char mensagem[MAX];
 
 	system("cls||clear");
 	printf("+-----------------------+\n");
-  printf("|   Lista de produtos   |\n");
-  printf("+-----------------------+\n");
+    printf("|   Lista de produtos   |\n");
+    printf("+-----------------------+\n");
 
-  for(int i = 0 ; i < contProd; i++){
+  for(i = 0 ; i < contProd; i++){
 	    printf("ID: %d\n", produto[i].id);
   		printf("Nome do produto: %s\n", produto[i].nome);
   		printf("Preco: %.2f\n", produto[i].preco);
