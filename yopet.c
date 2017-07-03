@@ -295,7 +295,7 @@ void verCaixa () {
 
 //Está função efetua a venda dos produtos
 void venderProduto () {
-  int locProd, opcao, qtdVendida;//locProd receberá a posição do produto que se quer buscar
+  int locProd, opcao, qtdVendida, certo;//locProd receberá a posição do produto que se quer buscar
   char mensagem[MAX];
 
   system("cls||clear");
@@ -314,21 +314,29 @@ void venderProduto () {
     setbuf(stdin, NULL);
     scanf("%s", mensagem);
     opcao = inputInt(mensagem);
-
+    do{
     if (opcao == 1) {
       printf("Quantos deseja vender?\n");
       setbuf(stdin, NULL);
       scanf("%s", mensagem);
       qtdVendida = inputInt(mensagem);
+      if(qtdVendida>produto[locProd].quantidade){
+        printf("Produto insuficiente!!!\nTente novamente\n");
+        certo=0;
+      }else{
       produto[locProd].quantidade -= qtdVendida;
       caixa += (produto[locProd].preco * qtdVendida);
       printf("Vendido com sucesso! Lucro de %.2f\n", (produto[locProd].preco * qtdVendida));
       printf("\nDigite enter para continuar...\n");
+      certo=1;
       setbuf(stdin, NULL);
       getchar();
+      }
     }
+    }while(certo==0);
   }
 }
+
 
 //Esta função exibe o menu administrativo
 void menuAdministrativo () {
